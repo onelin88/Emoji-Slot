@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+/* .clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clear {
+    clear: both;
+} */
+
+body {
+    background: #282828;
+    font-family: 'Anton', sans-serif;
+    color: #EEEEEE;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    font-size: 1.5em;
+}
+
+#gameSummary {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameSummary > div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#mainFrame {
+    display: flex;
+    width: 100%;
+    height: 900px;
+    gap: 15px;
+}
+
+#targetBountySection {
+    border: 4px solid green;
+    width: 10%;
+    height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#targetBountySection > h2 {
+    font-size: 2em;
+}
+
+#targetBounty {
+    font-size: 5em;
+}
+
+#targetsSection {
+    border: 4px solid green;
+    width: 80%;
+    height: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: crosshair;
+}
+
+#play {
+    width: 90%;
+    height: 10%;
+    margin: 25px;
+    border: 5px solid red;
+    background: transparent;
+    color: #EEEEEE;
+    font-size: 0.5em;
+}
+
+#play:hover {
+    background: red;
+}
+
+#targetTable {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em;
+}
+
+#targetsSection > #targetTable > .target {
+    display: flex;
+    width: 18%;
+    height: 18%;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+}
+
+#prorgessSection {
+    display: flex;
+    border: 4px solid green;
+    width: 10%;
+    height: auto;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#progressBar {
+    border: 1px solid red;
+    width: 70%;
+    height: 0%;
+    background-color: red;
+    margin: 35px 0;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+#refreshFrame {
+    width: 75%;
+    height: 50px;
+    background: #53FC18;
+    color: black;
+    margin-top: 20px;
+}
