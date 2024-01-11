@@ -629,3 +629,15 @@ const intervalId = setInterval(() => {
 }, 100)
 
 // function checkScore
+
+const showPopup = document.querySelector('.showPopup');
+const popUpContainer = document.querySelector('.popUpContainer');
+const closeButton = document.querySelector('.closeButton');
+
+showPopup.onclick = () => {
+    popUpContainer.classList.add('active');
+}
+
+closeButton.onclick = () => {
+    popUpContainer.classList.remove('active');
+}

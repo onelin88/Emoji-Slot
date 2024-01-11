@@ -65,6 +65,20 @@
                 <div id="row-5-col-5" class="target"></div>
                 <button id="play">Play</button>
             </section>
+            <div class="popUpContainer">
+                <div class="popUpBox">
+                    <h1>Emoji Slot Information</h1>
+                    <p>
+                        <ul>
+                            <li>😍 5 in a row or column is worth 10000 points 😍</li>
+                            <li>😍 Don't miss and your multiplier will continue to go up 😍</li>
+                            <li>😭 Miss a shot and your multiplier is reset 😭</li>
+                            <li>🎁 Fill your progress bar and open your loot box 🎁</li>
+                        </ul>
+                    </p>
+                    <button class="closeButton">Close</button>
+                </div>
+            </div>
         </section>
         <section id="prorgessSection">
             <div id="progressBar"></div>
@@ -72,8 +86,12 @@
     </section>
 
     <footer>
-        <h2>Bonus Amount: </h2>
-        <span id="bonusWin"></span>
+        <section>
+            <h2>Bonus Amount: </h2>
+            <span id="bonusWin"></span>
+        </section>
+
+        <button id="info" class="showPopup">info</button>
     </footer>
     <script type="text/javascript" src="js/main.js"></script>
 </body>

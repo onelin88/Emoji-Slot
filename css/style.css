@@ -133,10 +133,74 @@ footer {
     font-size: 2em;
 }
 
+footer > section {
+    width: 90%;
+}
+
+footer > #info {
+    align-self: center;
+    justify-self: flex-end;
+}
+
 #refreshFrame {
     width: 75%;
     height: 50px;
     background: #53FC18;
     color: black;
     margin-top: 20px;
+}
+
+.showPopup {
+    padding: 18px 40px;
+    background-color: purple;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 1em;
+    color: #EEEEEE;
+}
+
+.popUpContainer {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+.popUpContainer.active {
+    visibility: visible;
+    opacity: 85%;
+    transition: .4s ease;
+}
+
+.popUpContainer .popUpBox {
+    width: 80%;
+    height: 80%;
+    transform: scale(0);
+}
+
+.popUpContainer.active .popUpBox {
+    transform: scale(1);
+    transition: .4s ease;
+}
+
+.popUpBox > h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+.popUpBox button {
+    width: 100%;
+    height: 10%;
+    background-color: purple;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    color: #EEEEEE;
 }
