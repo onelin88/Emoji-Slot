@@ -37,8 +37,14 @@ command to run if program contains helper info
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+Jimmy Lin 
+[@LiN_fps](https://twitter.com/LiN_fps)
+
+John Reynolds
+[@MiLLER_fps](https://twitter.com/MiLLER_fps)
+
+Dave Vestal
+[@dAvdAv](https://davevestal.com/)
 
 ## Version History
 
