@@ -1,19 +1,19 @@
 // array with the different targets
 const emojis = ['🤌', '🍆', '✊🏿', '💩', '🖕', '🤦‍♂️', '🤡'];
 const numberOfTargets = emojis.length;
-
+const targetHit = '🎯';
+const miss = '❌';
 // game variables
 let score = 0;
 let multiplier = 0;
+let combo = 0;
 let time = 120;
 let targetB = 0;
 const rowBonus = 10000;
 const columnBonus = 5000;
-let rows = 8;
-let columns = 8;
+let rows = 5;
+let columns = 5;
 const targetArray = [];
-
-
 
 
 function updateCSSGrid() {
@@ -122,17 +122,27 @@ function createListeners(){
                 // Event handling code for each element
                 if (targetArray[r][c] == targetB) {
                     multiplier++;
+                    combo++;
                     scoreMultiplier.innerHTML = multiplier;
                     score = (1 * multiplier) + score;
                     queryScore.innerHTML = score;
-                    targetArray[r][c] = "🎯";
+                    
+                    if(combo >= 5){
+                        targetArray[r][c] = "<img src='images/woosh.gif' size=40 width=40/>"
+                    }
+                    else{
+                        targetArray[r][c] = targetHit;
+                    }
                     displayEmojis(); // testing for now
                 }
                 else {
                     multiplier = 0;
+                    combo = 0;
                     scoreMultiplier.innerHTML = multiplier;
                     score -= 100;
                     queryScore.innerHTML = score;
+                    targetArray[r][c] = miss;
+                    displayEmojis();
                 }
               });
         }
