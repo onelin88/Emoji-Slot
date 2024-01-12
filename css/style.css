@@ -2,37 +2,26 @@
     box-sizing: border-box;
 }
 
-/* .clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-}
-
-.clear {
-    clear: both;
-} */
-
 body {
     background: #282828;
     font-family: 'Anton', sans-serif;
     color: #EEEEEE;
+    margin: 5px;
 }
 
 header {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
-    font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
 }
 
 #gameSummary {
     display: flex;
     gap: 10px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #gameSummary > div {
@@ -44,14 +33,14 @@ header {
 #mainFrame {
     display: flex;
     width: 100%;
-    height: 900px;
+    height: 70vh;
     gap: 15px;
 }
 
 #targetBountySection {
     border: 4px solid green;
     width: 10%;
-    height: 900px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -69,45 +58,62 @@ header {
 #targetsSection {
     border: 4px solid green;
     width: 80%;
-    height: 900px;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: crosshair;
+    flex-direction: column;
+}
+
+#targetButtons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 #play {
     width: 90%;
-    height: 10%;
-    margin: 25px;
+    height: 90%;
     border: 5px solid red;
     background: transparent;
     color: #EEEEEE;
-    font-size: 0.5em;
+    font-size: 1em;
 }
 
 #play:hover {
     background: red;
 }
 
-#targetTable {
+/* #targetTable {
     width: 100%;
     height: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    font-size: 5em;
+    font-size: 4em;
+} */
+
+#targetTable {
+    width: 100%;
+    height: 90%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3em;
 }
 
-#targetsSection > #targetTable > .target {
+/* #targetsSection > #targetTable > div {
     display: flex;
     width: 18%;
     height: 18%;
     justify-content: center;
     align-items: center;
     border: 1px solid grey;
-}
+} */
 
 #prorgessSection {
     display: flex;
@@ -130,7 +136,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 1em;
 }
 
 footer > section {
@@ -147,7 +153,6 @@ footer > #info {
     height: 50px;
     background: #53FC18;
     color: black;
-    margin-top: 20px;
 }
 
 .showPopup {
