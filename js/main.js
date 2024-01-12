@@ -13,6 +13,9 @@ let rows = 8;
 let columns = 8;
 const targetArray = [];
 
+
+
+
 function updateCSSGrid() {
     const cssGrid = document.querySelector('#targetTable');
     cssGrid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
@@ -103,370 +106,42 @@ function playGame() {
     generateEmojis();
     createDivElements();
     displayEmojis();
+    createListeners();
 
     // check for consecutive rows or columns
     // checkRows();
     // checkColumns();
 }
 
+function createListeners(){
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            const selector = '.row-'+ r +'-col-' + c
+            const targetElement = document.querySelector(selector)
+            targetElement.addEventListener('click', () => {
+                // Event handling code for each element
+                if (targetArray[r][c] == targetB) {
+                    multiplier++;
+                    scoreMultiplier.innerHTML = multiplier;
+                    score = (1 * multiplier) + score;
+                    queryScore.innerHTML = score;
+                    targetArray[r][c] = "🎯";
+                    displayEmojis(); // testing for now
+                }
+                else {
+                    multiplier = 0;
+                    scoreMultiplier.innerHTML = multiplier;
+                    score -= 100;
+                    queryScore.innerHTML = score;
+                }
+              });
+        }
+    }
+}
+
 // event listeners
 document.querySelector('#play').addEventListener('click', playGame);
-document.querySelector('.row-0-col-0').addEventListener('click', checkr1c1);
-document.querySelector('.row-0-col-1').addEventListener('click', checkr1c2);
-document.querySelector('.row-0-col-2').addEventListener('click', checkr1c3);
-document.querySelector('.row-0-col-3').addEventListener('click', checkr1c4);
-document.querySelector('.row-0-col-4').addEventListener('click', checkr1c5);
-document.querySelector('.row-1-col-0').addEventListener('click', checkr2c1);
-document.querySelector('.row-1-col-1').addEventListener('click', checkr2c2);
-document.querySelector('.row-1-col-2').addEventListener('click', checkr2c3);
-document.querySelector('.row-1-col-3').addEventListener('click', checkr2c4);
-document.querySelector('.row-1-col-4').addEventListener('click', checkr2c5);
-document.querySelector('.row-2-col-0').addEventListener('click', checkr3c1);
-document.querySelector('.row-2-col-1').addEventListener('click', checkr3c2);
-document.querySelector('.row-2-col-2').addEventListener('click', checkr3c3);
-document.querySelector('.row-2-col-3').addEventListener('click', checkr3c4);
-document.querySelector('.row-2-col-4').addEventListener('click', checkr3c5);
-document.querySelector('.row-3-col-0').addEventListener('click', checkr4c1);
-document.querySelector('.row-3-col-1').addEventListener('click', checkr4c2);
-document.querySelector('.row-3-col-2').addEventListener('click', checkr4c3);
-document.querySelector('.row-3-col-3').addEventListener('click', checkr4c4);
-document.querySelector('.row-3-col-4').addEventListener('click', checkr4c5);
 
-function checkr1c1() {
-    console.log('testing');
-    if (r1c1 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r1c1 = "X";
-        row1col1.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr1c2() {
-    if (r1c2 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r1c2 = "X";
-        row1col2.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr1c3() {
-    if (r1c3 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r1c3 = "X";
-        row1col3.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr1c4() {
-    if (r1c4 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r1c4 = "X";
-        row1col4.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr1c5() {
-    if (r1c5 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r1c5 = "X";
-        row1col5.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr2c1() {
-    if (r2c1 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r2c1 = "X";
-        row2col1.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr2c2() {
-    if (r2c2 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r2c2 = "X";
-        row2col2.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr2c3() {
-    if (r2c3 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r2c3 = "X";
-        row2col3.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr2c4() {
-    if (r2c4 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r2c4 = "X";
-        row2col4.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr2c5() {
-    if (r2c5 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r2c5 = "X";
-        row2col5.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr3c1() {
-    if (r3c1 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r3c1 = "X";
-        row3col1.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr3c2() {
-    if (r3c2 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r3c2 = "X";
-        row3col2.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr3c3() {
-    if (r3c3 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r3c3 = "X";
-        row3col3.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr3c4() {
-    if (r3c4 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r3c4 = "X";
-        row3col4.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr3c5() {
-    if (r3c5 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        queryScore.innerHTML = score;
-        r3c5 = "X";
-        row3col5.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr4c1() {
-    if (r4c1 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        r4c1 = "X";
-        row4col1.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr4c2() {
-    if (r4c2 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        r4c2 = "X";
-        row4col2.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr4c3() {
-    if (r4c3 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        r4c3 = "X";
-        row4col3.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr4c4() {
-    if (r4c4 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        r4c4 = "X";
-        row4col4.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
-
-function checkr4c5() {
-    if (r4c5 == targetB) {
-        multiplier++;
-        scoreMultiplier.innerHTML = multiplier;
-        score = (1 * multiplier) + score;
-        r4c5 = "X";
-        row4col5.innerHTML = " ";
-    }
-    else {
-        multiplier = 0;
-        scoreMultiplier.innerHTML = multiplier;
-        score -= 100;
-        queryScore.innerHTML = score;
-    }
-}
 
 function checkRows() {
     const rowOne = [row1col1, row1col2, row1col3, row1col4, row1col5];
