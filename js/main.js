@@ -1,39 +1,69 @@
 // array with the different targets
-const targetArray = ['🤌', '🍆', '✊🏿', '💩', '🖕', '🤦‍♂️', '🤡'];
-const numberOfTargets = targetArray.length;
+const emojis = ['🤌', '🍆', '✊🏿', '💩', '🖕', '🤦‍♂️', '🤡'];
+const numberOfTargets = emojis.length;
 
 // game variables
 let score = 0;
 let multiplier = 0;
 let time = 120;
 let targetB = 0;
+const rowBonus = 10000;
+const columnBonus = 5000;
+let rows = 8;
+let columns = 8;
+const targetArray = [];
 
-// variables for each row and column r = row, c = column
-let r1c1 = 0;
-let r1c2 = 0;
-let r1c3 = 0;
-let r1c4 = 0;
-let r1c5 = 0;
-let r2c1 = 0;
-let r2c2 = 0;
-let r2c3 = 0;
-let r2c4 = 0;
-let r2c5 = 0;
-let r3c1 = 0;
-let r3c2 = 0;
-let r3c3 = 0;
-let r3c4 = 0;
-let r3c5 = 0;
-let r4c1 = 0;
-let r4c2 = 0;
-let r4c3 = 0;
-let r4c4 = 0;
-let r4c5 = 0;
-let r5c1 = 0;
-let r5c2 = 0;
-let r5c3 = 0;
-let r5c4 = 0;
-let r5c5 = 0;
+function updateCSSGrid() {
+    const cssGrid = document.querySelector('#targetTable');
+    cssGrid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+    cssGrid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+}
+
+function createTargetArray() {
+    for (let r = 0; r < rows; r++) {
+        targetArray[r] = [];
+        for (let c = 0; c < columns; c++) {
+            targetArray[r][c] = 0;
+        }
+    }
+}
+
+function generateEmojis() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            targetArray[r][c] = emojis[Math.floor(Math.random() * numberOfTargets)];
+        }
+    }
+}
+
+const gridContainer = document.querySelector('#targetTable');
+
+function createDivElements() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            const newDiv = document.createElement('div');
+            newDiv.className = `row-${r}-col-${c} targets`;
+            gridContainer.appendChild(newDiv);
+        }
+    }
+}
+
+function displayEmojis() {
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns; c++) {
+            let rc = `row-${r}-col-${c}`;
+            const gridHTML = document.querySelector(`.${rc}`);
+            gridHTML.innerHTML = targetArray[r][c];
+        }
+    }
+}
+
+function removeTargets() {
+    const allTargets = document.querySelectorAll('.targets');
+    allTargets.forEach(target => {
+        target.remove();
+    });
+}
 
 // countdown timer taking the time and subtracting 1 every 1000ms (1second)
 setInterval(() => {
@@ -41,133 +71,69 @@ setInterval(() => {
     document.querySelector('#timeLeft').innerHTML = time;
 }, 1000)
 
-// bonuses for matching 5 in a row, or 4 in a column
-const rowBonus = 10000;
-const columnBonus = 5000;
-
 // variables that select elements using querySelector
 const timeLeft = document.querySelector('#timeLeft');
 const targetBounty = document.querySelector('#targetBounty');
-const row1col1 = document.querySelector('#row-1-col-1');
-const row1col2 = document.querySelector('#row-1-col-2');
-const row1col3 = document.querySelector('#row-1-col-3');
-const row1col4 = document.querySelector('#row-1-col-4');
-const row1col5 = document.querySelector('#row-1-col-5');
-const row2col1 = document.querySelector('#row-2-col-1');
-const row2col2 = document.querySelector('#row-2-col-2');
-const row2col3 = document.querySelector('#row-2-col-3');
-const row2col4 = document.querySelector('#row-2-col-4');
-const row2col5 = document.querySelector('#row-2-col-5');
-const row3col1 = document.querySelector('#row-3-col-1');
-const row3col2 = document.querySelector('#row-3-col-2');
-const row3col3 = document.querySelector('#row-3-col-3');
-const row3col4 = document.querySelector('#row-3-col-4');
-const row3col5 = document.querySelector('#row-3-col-5');
-const row4col1 = document.querySelector('#row-4-col-1');
-const row4col2 = document.querySelector('#row-4-col-2');
-const row4col3 = document.querySelector('#row-4-col-3');
-const row4col4 = document.querySelector('#row-4-col-4');
-const row4col5 = document.querySelector('#row-4-col-5');
+
 const queryScore = document.querySelector('#score');
 const scoreMultiplier = document.querySelector('#scoreMultiplier');
 const bonusWin = document.querySelector('#bonusWin');
 const winStyle = "10px solid green";
 
-// event listeners
-document.querySelector('#play').addEventListener('click', playGame);
-document.querySelector('#row-1-col-1').addEventListener('click', checkr1c1);
-document.querySelector('#row-1-col-2').addEventListener('click', checkr1c2);
-document.querySelector('#row-1-col-3').addEventListener('click', checkr1c3);
-document.querySelector('#row-1-col-4').addEventListener('click', checkr1c4);
-document.querySelector('#row-1-col-5').addEventListener('click', checkr1c5);
-document.querySelector('#row-2-col-1').addEventListener('click', checkr2c1);
-document.querySelector('#row-2-col-2').addEventListener('click', checkr2c2);
-document.querySelector('#row-2-col-3').addEventListener('click', checkr2c3);
-document.querySelector('#row-2-col-4').addEventListener('click', checkr2c4);
-document.querySelector('#row-2-col-5').addEventListener('click', checkr2c5);
-document.querySelector('#row-3-col-1').addEventListener('click', checkr3c1);
-document.querySelector('#row-3-col-2').addEventListener('click', checkr3c2);
-document.querySelector('#row-3-col-3').addEventListener('click', checkr3c3);
-document.querySelector('#row-3-col-4').addEventListener('click', checkr3c4);
-document.querySelector('#row-3-col-5').addEventListener('click', checkr3c5);
-document.querySelector('#row-4-col-1').addEventListener('click', checkr4c1);
-document.querySelector('#row-4-col-2').addEventListener('click', checkr4c2);
-document.querySelector('#row-4-col-3').addEventListener('click', checkr4c3);
-document.querySelector('#row-4-col-4').addEventListener('click', checkr4c4);
-document.querySelector('#row-4-col-5').addEventListener('click', checkr4c5);
-
 // initializes the game when the play button is pressed in the browser
 function playGame() {
     // refresh borders at the start of the function to reset any green win borders
-    const refreshBorders = [row1col1, row1col2, row1col3, row1col4, row1col5, row2col1, row2col2, row2col3, row2col4, row2col5, row3col1, row3col2, row3col3, row3col4, row3col5, row4col1, row4col2, row4col3, row4col4, row4col5]
-    refreshBorders.forEach((border, i) => {
-        border.style.border = "1px solid grey";
-    })
-    bonusWin.innerHTML = " ";
-    
-    const everyCell = [r1c1, r1c2, r1c3, r1c4, r1c5, r2c1, r2c2, r2c3, r2c4, r2c5, r3c1, r3c2, r3c3, r3c4, r3c5, r4c1, r4c2, r4c3, r4c4, r4c5]
+    // const refreshBorders = [row1col1, row1col2, row1col3, row1col4, row1col5, row2col1, row2col2, row2col3, row2col4, row2col5, row3col1, row3col2, row3col3, row3col4, row3col5, row4col1, row4col2, row4col3, row4col4, row4col5]
+    // refreshBorders.forEach((border, i) => {
+    //     border.style.border = "1px solid grey";
+    // })
+    // bonusWin.innerHTML = " ";
 
     // randomly select 1 of the targets from the array and apply it to the variable
-    targetB = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r1c1 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r1c2 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r1c3 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r1c4 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r1c5 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r2c1 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r2c2 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r2c3 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r2c4 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r2c5 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r3c1 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r3c2 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r3c3 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r3c4 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r3c5 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r4c1 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r4c2 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r4c3 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r4c4 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-    r4c5 = targetArray[Math.floor(Math.random() * numberOfTargets)]
-
-    // show the randomly generated targets in the browser
+    targetB = emojis[Math.floor(Math.random() * numberOfTargets)]
     targetBounty.innerHTML = targetB;
-    row1col1.innerHTML = r1c1;
-    row1col2.innerText = r1c2;
-    row1col3.innerText = r1c3;
-    row1col4.innerText = r1c4;
-    row1col5.innerText = r1c5;
-    row2col1.innerText = r2c1;
-    row2col2.innerText = r2c2;
-    row2col3.innerText = r2c3;
-    row2col4.innerText = r2c4;
-    row2col5.innerText = r2c5;
-    row3col1.innerHTML = r3c1;
-    row3col2.innerText = r3c2;
-    row3col3.innerText = r3c3;
-    row3col4.innerText = r3c4;
-    row3col5.innerText = r3c5;
-    row4col1.innerText = r4c1;
-    row4col2.innerText = r4c2;
-    row4col3.innerText = r4c3;
-    row4col4.innerText = r4c4;
-    row4col5.innerText = r4c5;
-
-    // everyCell.forEach((cell, i) => {
-    //     if (cell == targetArray[1]) {
-    //         console.log("hands");
+    // for (let r = 0; r < rows; r++) {
+    //     for (let c = 0; c < columns; c++) {
+    //         targetArray[r][c] = emojis[Math.floor(Math.random() * numberOfTargets)];
     //     }
-    // })
-    // if (r1c1 == targetArray[1]) {
-    //     row1col1.style.cursor = "grab";
     // }
+    removeTargets();
+    updateCSSGrid();
+    createTargetArray();
+    generateEmojis();
+    createDivElements();
+    displayEmojis();
 
     // check for consecutive rows or columns
-    checkRows();
-    checkColumns();
+    // checkRows();
+    // checkColumns();
 }
 
+// event listeners
+document.querySelector('#play').addEventListener('click', playGame);
+document.querySelector('.row-0-col-0').addEventListener('click', checkr1c1);
+document.querySelector('.row-0-col-1').addEventListener('click', checkr1c2);
+document.querySelector('.row-0-col-2').addEventListener('click', checkr1c3);
+document.querySelector('.row-0-col-3').addEventListener('click', checkr1c4);
+document.querySelector('.row-0-col-4').addEventListener('click', checkr1c5);
+document.querySelector('.row-1-col-0').addEventListener('click', checkr2c1);
+document.querySelector('.row-1-col-1').addEventListener('click', checkr2c2);
+document.querySelector('.row-1-col-2').addEventListener('click', checkr2c3);
+document.querySelector('.row-1-col-3').addEventListener('click', checkr2c4);
+document.querySelector('.row-1-col-4').addEventListener('click', checkr2c5);
+document.querySelector('.row-2-col-0').addEventListener('click', checkr3c1);
+document.querySelector('.row-2-col-1').addEventListener('click', checkr3c2);
+document.querySelector('.row-2-col-2').addEventListener('click', checkr3c3);
+document.querySelector('.row-2-col-3').addEventListener('click', checkr3c4);
+document.querySelector('.row-2-col-4').addEventListener('click', checkr3c5);
+document.querySelector('.row-3-col-0').addEventListener('click', checkr4c1);
+document.querySelector('.row-3-col-1').addEventListener('click', checkr4c2);
+document.querySelector('.row-3-col-2').addEventListener('click', checkr4c3);
+document.querySelector('.row-3-col-3').addEventListener('click', checkr4c4);
+document.querySelector('.row-3-col-4').addEventListener('click', checkr4c5);
+
 function checkr1c1() {
+    console.log('testing');
     if (r1c1 == targetB) {
         multiplier++;
         scoreMultiplier.innerHTML = multiplier;
@@ -627,8 +593,6 @@ const intervalId = setInterval(() => {
         updateProgressBar(0);
     }
 }, 100)
-
-// function checkScore
 
 const showPopup = document.querySelector('.showPopup');
 const popUpContainer = document.querySelector('.popUpContainer');
