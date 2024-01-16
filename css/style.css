@@ -1,12 +1,32 @@
 * {
     box-sizing: border-box;
+    /* font-size: 12px; */
 }
 
+:root {
+    /* --color1: #363062; */
+    --color1: #222831;
+    --color2: #435585;
+    --textcolor: #F5E8C7;
+}
+
+@keyframes blinking { 
+    0% { 
+      opacity: 0; 
+    } 
+    50% { 
+      opacity: 0.8; 
+    } 
+    100% { 
+      opacity: 0; 
+    } 
+  } 
+
 body {
-    background: #282828;
+    background: var(--color1);
     font-family: 'Anton', sans-serif;
-    color: #EEEEEE;
-    margin: 5px;
+    color: #F5E8C7;
+    text-align: center;
 }
 
 header {
@@ -19,7 +39,6 @@ header {
 
 #gameSummary {
     display: flex;
-    gap: 10px;
     align-items: center;
     justify-content: space-evenly;
 }
@@ -27,36 +46,51 @@ header {
 #gameSummary > div {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
 #mainFrame {
     display: flex;
     width: 100%;
     height: 70vh;
-    gap: 15px;
+    gap: 10px;
 }
 
 #targetBountySection {
-    border: 4px solid green;
+    border: 4px solid var(--color2);
+    border-radius: 6px;
     width: 10%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-#targetBountySection > h2 {
     font-size: 2em;
+    #targetBounty {
+        font-size: 3em;
+    }
 }
 
-#targetBounty {
-    font-size: 5em;
+.targetBounty {
+    height: 40%;
+    width: 100%;
+    text-align: center;
+}
+
+.bonus {
+    height: 40%;
+    width: 100%;
+    text-align: center;
+}
+
+.info {
+    height: 20%;
+    width: 100%;
+    align-self: center;
+    text-align: center;
 }
 
 #targetsSection {
-    border: 4px solid green;
+    border: 4px solid var(--color2);
+    border-radius: 6px;
     width: 80%;
     height: 100%;
     display: flex;
@@ -66,39 +100,9 @@ header {
     flex-direction: column;
 }
 
-#targetButtons {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-#play {
-    width: 90%;
-    height: 90%;
-    border: 5px solid red;
-    background: transparent;
-    color: #EEEEEE;
-    font-size: 1em;
-}
-
-#play:hover {
-    background: red;
-}
-
-/* #targetTable {
-    width: 100%;
-    height: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    font-size: 4em;
-} */
-
 #targetTable {
     width: 100%;
-    height: 90%;
+    height: 95%;
     display: grid;
     justify-content: center;
     align-items: center;
@@ -106,20 +110,12 @@ header {
     font-size: 3em;
 }
 
-/* #targetsSection > #targetTable > div {
+#progessSection {
     display: flex;
-    width: 18%;
-    height: 18%;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid grey;
-} */
-
-#prorgessSection {
-    display: flex;
-    border: 4px solid green;
+    border: 4px solid var(--color2);
+    border-radius: 6px;
     width: 10%;
-    height: auto;
+    height: 100%;
     justify-content: center;
     align-items: flex-end;
 }
@@ -127,7 +123,7 @@ header {
 #progressBar {
     border: 1px solid red;
     width: 70%;
-    height: 0%;
+    /* height: 0%; */
     background-color: red;
     margin: 35px 0;
 }
@@ -136,35 +132,51 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5px;
+}
+
+#targetButtons {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#info {
+    /* align-self: flex-end;
+    justify-self: flex-end; */
     font-size: 1em;
+    font-weight: bold;
 }
 
-footer > section {
-    width: 90%;
+#play {
+    width: 100%;
+    height: 100%;
+    border: 4px solid var(--color2);
+    background: transparent;
+    color: var(--textcolor);
+    font-size: 4em;
+    font-weight: bold;
+    border-radius: 6px;
+    height: 10vh;
+    margin-top: 10px;
 }
 
-footer > #info {
-    align-self: center;
-    justify-self: flex-end;
-}
-
-#refreshFrame {
-    width: 75%;
-    height: 50px;
-    background: #53FC18;
-    color: black;
+#play:hover {
+    background: #818FB4;
+    border: #818FB4;
 }
 
 .showPopup {
     padding: 18px 40px;
-    background-color: purple;
+    background-color: #818FB4;
     border: none;
     outline: none;
     border-radius: 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
     cursor: pointer;
     font-size: 1em;
-    color: #EEEEEE;
+    color: var(--textcolor);
 }
 
 .popUpContainer {
@@ -203,9 +215,78 @@ footer > #info {
 .popUpBox button {
     width: 100%;
     height: 10%;
-    background-color: purple;
+    background-color: #818FB4;
     border-radius: 6px;
     border: none;
     outline: none;
-    color: #EEEEEE;
+    color: var(--textcolor);
+}
+
+@media only screen and (max-width: 750px) {
+    /* body {
+        background: black;
+    } */
+
+    header {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.75em;
+    }
+
+    #mainFrame {
+        display: flex;
+        flex-direction: column;
+        height: 75vh;
+        width: 100%;
+    }
+
+    #targetBountySection {
+        display: flex;
+        flex-direction: row;
+        height: 10%;
+        width: 100%;
+        font-size: 0.5em;
+    }
+
+    .targetBounty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        font-size: 2em;
+        text-align: center;
+        h2 {
+            display: none;
+            font-size: 1em;
+        }
+        #targetBounty {
+            font-size: 2.5em;
+        }
+    }
+
+    .info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #targetsSection {
+        width: 100%;
+        height: 80%;
+    }
+
+    #progessSection {
+        height: 10%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        #progressBar {
+            width: 0%;
+            height: 70%;
+            margin: 0;
+        }
+    }
 }

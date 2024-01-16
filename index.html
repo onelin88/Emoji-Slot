@@ -33,14 +33,20 @@
     </section>
     <section id="mainFrame">
         <section id="targetBountySection">
-            <h2>Target: </h1>
-            <span id="targetBounty"></span>
+            <section class="targetBounty">
+                <h2>Target</h1>
+                <span id="targetBounty"></span>
+            </section>
+            <section class="bonus">
+                <h2>Bonus</h2>
+                <span id="bonusWin"></span>
+            </section>
+            <section class="info">
+                <button id="info" class="showPopup">INFO</button>
+            </section>
         </section>
         <section id="targetsSection">
             <section id="targetTable"></section>
-            <section id="targetButtons">
-                <button id="play">Play</button>
-            </section>
             <div class="popUpContainer">
                 <div class="popUpBox">
                     <h1>Emoji Slot Information</h1>
@@ -56,18 +62,15 @@
                 </div>
             </div>
         </section>
-        <section id="prorgessSection">
+        <section id="progessSection">
             <div id="progressBar"></div>
         </section>
     </section>
 
     <footer>
-        <section>
-            <h2>Bonus Amount: </h2>
-            <span id="bonusWin"></span>
+        <section id="targetButtons">
+            <button id="play">PLAY</button>
         </section>
-
-        <button id="info" class="showPopup">info</button>
     </footer>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
