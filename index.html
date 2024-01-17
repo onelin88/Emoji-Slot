@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device.width, initial-scale=1">
-    <title>Emoji Slot - Come Play 😂</title>
+    <title>💀 Emoji Slot 💀</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -13,65 +13,40 @@
 </head>
 
 <body>
-    <header>
-        <h1>💀 Emoji Slot 💀</h1>
-    </header>
-
-    <section id="gameSummary">
-        <div>
-            <h2>Time: </h1>
-            <span id="timeLeft"></span>
-        </div>
-        <div>
-            <h2>Score: </h1>
-            <span id="score">0</span>
-        </div>
-        <div>
-            <h2>Multiplier: </h1>
-            <p><span id="scoreMultiplier">0</span>x</p>
-        </div>
+    <section class="time">
+        <h3>Time: <span id="time"></span></h3>
     </section>
-    <section id="mainFrame">
-        <section id="targetBountySection">
-            <section class="targetBounty">
-                <h2>Target</h1>
-                <span id="targetBounty"></span>
-            </section>
-            <section class="bonus">
-                <h2>Bonus</h2>
-                <span id="bonusWin"></span>
-            </section>
-            <section class="info">
-                <button id="info" class="showPopup">INFO</button>
-            </section>
-        </section>
-        <section id="targetsSection">
-            <section id="targetTable"></section>
-            <div class="popUpContainer">
-                <div class="popUpBox">
-                    <h1>Emoji Slot Information</h1>
-                    <p>
-                        <ul>
-                            <li>😍 5 in a row or column is worth 10000 points 😍</li>
-                            <li>😍 Don't miss and your multiplier will continue to go up 😍</li>
-                            <li>😭 Miss a shot and your multiplier is reset 😭</li>
-                            <li>🎁 Fill your progress bar and open your loot box 🎁</li>
-                        </ul>
-                    </p>
-                    <button class="closeButton">Close</button>
-                </div>
+    <section id="targetsSection">
+        <section id="targetTable"></section>
+        <div class="popUpContainer">
+            <div class="popUpBox">
+                <h1>Emoji Slot Information</h1>
+                <p>
+                <ul>
+                    <li>😍 5 in a row or column is worth 10000 points 😍</li>
+                    <li>😍 Don't miss and your multiplier will continue to go up 😍</li>
+                    <li>😭 Miss a shot and your multiplier is reset 😭</li>
+                    <li>🎁 Fill your progress bar and open your loot box 🎁</li>
+                </ul>
+                </p>
+                <button class="closeButton">Close</button>
             </div>
-        </section>
-        <section id="progessSection">
-            <div id="progressBar"></div>
-        </section>
+        </div>
     </section>
 
-    <footer>
-        <section id="targetButtons">
-            <button id="play">PLAY</button>
-        </section>
-    </footer>
+    <section class="menu">
+        <div class="left">
+            <h3>Bounty: <span id="targetBounty"></span></h3>
+            <h3>Score: <span id="score"></span></h3>
+        </div>
+        <div class="middle">
+            <button id="play">▶ Play</button>
+        </div>
+        <div class="right">
+            <h3>Multiplier: <span id="scoreMultiplier">0</span>x</h3>
+            <button id="info" class="showPopup">Info</button>
+        </div>
+    </section>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
 
