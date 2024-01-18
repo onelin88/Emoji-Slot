@@ -124,32 +124,28 @@ function checkMultiplier(multiplier) {
         targets.style.fontSize = '6em';
     }
 
-    if (multiplier >= 10) {
+    if (multiplier >= 25) {
         rows = 4;
         columns = 4;
         targets.style.fontSize = '5em';
     }
     
-    if (multiplier >= 20) {
+    if (multiplier >= 50) {
         rows = 5;
         columns = 5;
         targets.style.fontSize = '4em';
     }
 
-    if (multiplier >= 30) {
+    if (multiplier >= 75) {
         rows = 6;
         columns = 6;
-        targets.style.fontSize = '2em';
+        targets.style.fontSize = '3em';
     }
 
-    if (multiplier >= 40) {
-        rows = 6;
-        columns = 6;
-    }
-
-    if (multiplier >= 50) {
+    if (multiplier >= 100) {
         rows = 7;
         columns = 7;
+        targets.style.fontSize = '2em';
     }
 }
 
