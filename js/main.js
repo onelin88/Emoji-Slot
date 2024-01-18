@@ -19,6 +19,15 @@ const targetArray = [];
 // event listener for play button
 document.querySelector('#play').addEventListener('click', playGame);
 
+const playAudio = new Audio('./sounds/play.wav');
+playAudio.volume = 0.5;
+const winAudio = new Audio('./sounds/hoiyah.wav');
+winAudio.volume = 0.5;
+const fireAudio = new Audio('./sounds/fire.wav');
+fireAudio.volume = 0.5;
+const missAudio = new Audio('./sounds/miss.wav');
+missAudio.volume = 0.5;
+
 function updateCSSGrid() {
     const cssGrid = document.querySelector('#targetTable');
     cssGrid.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
@@ -101,6 +110,9 @@ function playGame() {
     displayEmojis();
     createListeners();
     checkRows(targetArray);
+    checkCols(targetArray);
+
+    playAudio.play();
 
 }
 
@@ -149,6 +161,8 @@ function createListeners() {
             targetElement.addEventListener('click', () => {
                 // Event handling code for each element
                 if (targetArray[r][c] == targetB) {
+                    fireAudio.play();
+                    runAnimation();
                     multiplier++;
                     combo++;
                     scoreMultiplier.innerHTML = multiplier;
@@ -164,6 +178,7 @@ function createListeners() {
                     displayEmojis(); // testing for now
                 }
                 else {
+                    missAudio.play();
                     multiplier = 0;
                     combo = 0;
                     scoreMultiplier.innerHTML = multiplier;
@@ -175,6 +190,14 @@ function createListeners() {
             });
         }
     }
+}
+
+function runAnimation() {
+    scoreMultiplier.classList.add('flashAnimation');
+    scoreMultiplier.addEventListener('animationend', function () {
+        scoreMultiplier.classList.remove('flashAnimation');
+    })
+
 }
 
 function checkRows(arr) {
@@ -189,8 +212,30 @@ function checkRows(arr) {
         }
         if (rowMatch) {
             rowWinner(i);
+            winAudio.play();
         }
     });
+}
+
+function checkCols(arr) {
+    const numRows = arr.length;
+    const numCols = arr[0].length;
+
+    for (let j = 0; j < numCols; j++) {
+        let colMatch = true;
+
+        for (let i = 0; i < numRows-1; i++) {
+            if (arr[i][j] !== arr[i+1][j]) {
+                colMatch = false;
+                break;
+            }
+        }
+
+        if (colMatch) {
+            colWinner(j);
+            winAudio.play();
+        }
+    }
 }
 
 function rowWinner(row) {
@@ -208,7 +253,6 @@ function rowWinner(row) {
     } else if (rows >= 6) {
         score += 20000;
     }
-    
 }
 
 function colWinner(col) {

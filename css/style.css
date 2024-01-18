@@ -23,6 +23,20 @@
     }
 }
 
+@keyframes flash {
+    0% {
+        font-size: 4em;
+    }
+
+    50% {
+        font-size: 2em;
+    }
+
+    100% {
+        font-size: 1em;
+    }
+}
+
 body {
     background: var(--color1);
     font-family: 'Anton', sans-serif;
@@ -96,6 +110,10 @@ body {
         justify-content: space-around;
         align-items: center;
         width: 33%;
+
+        .flashAnimation {
+            animation: flash 100ms forwards;
+        }
 
         #info {
             width: 20%;
