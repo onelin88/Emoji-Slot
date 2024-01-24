@@ -96,10 +96,8 @@ const winStyle = "10px solid green";
 
 // initializes the game when the play button is pressed in the browser
 function playGame() {
-    // randomly select 1 of the targets from the array and apply it to the variable
     targetB = emojis[Math.floor(Math.random() * numberOfTargets)];
     targetBounty.innerHTML = targetB;
-    // targetBounty.style.animation = 'blinking 1s infinite';
 
     checkMultiplier(multiplier);
     removeTargets();
@@ -118,7 +116,7 @@ function playGame() {
 
 function checkMultiplier(multiplier) {
     const targets = document.querySelector('#targetTable');
-    if (multiplier == 0) {
+    if (multiplier >= 0) {
         rows = 3;
         columns = 3;
         targets.style.fontSize = '6em';
@@ -190,7 +188,7 @@ function createListeners() {
 
 function runAnimation() {
     scoreMultiplier.classList.add('flashAnimation');
-    scoreMultiplier.addEventListener('animationend', function () {
+    scoreMultiplier.addEventListener('animationend', () => {
         scoreMultiplier.classList.remove('flashAnimation');
     })
 
@@ -240,6 +238,7 @@ function rowWinner(row) {
         const singleRow = document.querySelector(`.${rc}`);
         singleRow.style.animation = 'blinking 1s infinite';
     }
+
     if (rows <= 3) {
         score += 1000;
     } else if (rows >= 4) {
@@ -257,7 +256,16 @@ function colWinner(col) {
         const singleCol = document.querySelector(`.${rc}`);
         singleCol.style.animation = 'blinking 1s infinite';
     }
-    score += columnBonus;
+    
+    if (columns <= 3) {
+        score += 1000;
+    } else if (columns >= 4) {
+        score += 5000;
+    } else if (columns >= 5) {
+        score += 10000;
+    } else if (columns >= 6) {
+        score += 20000;
+    }
 }
 
 const showPopup = document.querySelector('.showPopup');
