@@ -10,8 +10,7 @@ let multiplier = 0;
 let combo = 0;
 let time = 0;
 let targetB = 0;
-const rowBonus = 10000;
-const columnBonus = 10000;
+let victoryFlag = 0;
 let rows = 3;
 let columns = 3;
 const targetArray = [];
@@ -47,6 +46,13 @@ function generateEmojis() {
     for (let r = 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             targetArray[r][c] = emojis[Math.floor(Math.random() * numberOfTargets)];
+        }
+    }
+    if (victoryFlag >= 10) {
+        let sameTarget = emojis[Math.floor(Math.random() * numberOfTargets)];
+        let randomRow = Math.floor(Math.random() * rows);
+        for (let i = 0; i < columns; i++) {
+            targetArray[randomRow][i] = sameTarget;
         }
     }
 }
@@ -119,31 +125,31 @@ function checkMultiplier(multiplier) {
     if (multiplier >= 0) {
         rows = 3;
         columns = 3;
-        targets.style.fontSize = '6em';
+        targets.style.fontSize = '5em';
     }
 
-    if (multiplier >= 25) {
+    if (multiplier >= 15) {
         rows = 4;
         columns = 4;
-        targets.style.fontSize = '5em';
+        targets.style.fontSize = '4em';
     }
     
     if (multiplier >= 50) {
         rows = 5;
         columns = 5;
-        targets.style.fontSize = '4em';
+        targets.style.fontSize = '3em';
     }
 
     if (multiplier >= 75) {
         rows = 6;
         columns = 6;
-        targets.style.fontSize = '3em';
+        targets.style.fontSize = '2em';
     }
 
     if (multiplier >= 100) {
         rows = 7;
         columns = 7;
-        targets.style.fontSize = '2em';
+        targets.style.fontSize = '1em';
     }
 }
 
@@ -195,6 +201,7 @@ function runAnimation() {
 }
 
 function checkRows(arr) {
+    victoryFlag++;
     arr.forEach((item, i) => {
         let rowMatch = true;
 
@@ -207,6 +214,7 @@ function checkRows(arr) {
         if (rowMatch) {
             rowWinner(i);
             winAudio.play();
+            victoryFlag = 0;
         }
     });
 }
@@ -228,6 +236,7 @@ function checkCols(arr) {
         if (colMatch) {
             colWinner(j);
             winAudio.play();
+            victoryFlag = 0;
         }
     }
 }
