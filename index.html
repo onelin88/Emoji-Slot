@@ -14,7 +14,7 @@
 
 <body>
     <section class="time">
-        <h3>Time: <span id="time"></span></h3>
+        <h3>Time: <span id="time">60</span></h3>
     </section>
     <section id="targetsSection">
         <section id="targetTable"></section>
@@ -35,12 +35,23 @@
                 <button class="closeButton">Close</button>
             </div>
         </div>
+        <div class="endGameContainer">
+            <div class="endGamePopup">
+                <h1>Thanks for playing!</h1>
+                <h2>Score: <span class="finalScore"></span></h2>
+                <h3>Targets Killed: <span class="targetsKilled"></span></h3>
+                <h3>Targets Missed: <span class="targetsMissed"></span></h3>
+                <h3>Accuracy: <span class="accuracy"></span>%</h3>
+                <h3>Hoiyahs: <span class="hoiyahs"></span></h3>
+                <button class="closeEndGame" type="button">Close</button>
+            </div>
+        </div>
     </section>
 
     <section class="menu">
         <div class="left">
-            <h3>Bounty: <span id="targetBounty"></span></h3>
-            <h3>Score: <span id="score"></span></h3>
+            <h3>Bounty: <span id="targetBounty">❌</span></h3>
+            <h3>Score: <span id="score">0</span></h3>
         </div>
         <div class="middle">
             <button id="play">▶ Play</button>
