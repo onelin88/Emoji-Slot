@@ -8,7 +8,11 @@ const miss = '❌';
 let score = 0;
 let multiplier = 0;
 let combo = 0;
-let time = 0;
+let time = 60;
+let shotsTaken = 0;
+let targetsKilled = 0;
+let targetsMissed = 0;
+let hoiyahs = 0;
 let targetB = 0;
 let victoryFlag = 0;
 let rows = 3;
@@ -87,10 +91,22 @@ function removeTargets() {
 }
 
 // countdown timer taking the time and subtracting 1 every 1000ms (1second)
-setInterval(() => {
-    time++;
-    document.querySelector('#time').innerHTML = time;
-}, 1000)
+let timerStarted = false;
+
+function startTimer() {
+    if (!timerStarted) {
+        let startInterval = setInterval(() => {
+            time--;
+            document.querySelector('#time').innerHTML = time;
+        }, 1000)
+        timerStarted = true;
+        setTimeout(() => {
+            endGame();
+            clearInterval(startInterval);
+            time = 60;
+        }, 60000)
+    }
+}
 
 // variables that select elements using querySelector
 const timeLeft = document.querySelector('#timeLeft');
@@ -105,6 +121,7 @@ function playGame() {
     targetB = emojis[Math.floor(Math.random() * numberOfTargets)];
     targetBounty.innerHTML = targetB;
 
+    startTimer();
     checkMultiplier(multiplier);
     removeTargets();
     updateCSSGrid();
@@ -117,7 +134,30 @@ function playGame() {
     checkCols(targetArray);
 
     playAudio.play();
+}
 
+function endGame() {
+    let accuracy = (targetsKilled / shotsTaken * 100).toFixed(2);
+    removeTargets();
+    endGameContainer.classList.add('active');
+    document.querySelector('.finalScore').innerText = score;
+    document.querySelector('.targetsKilled').innerText = targetsKilled;
+    document.querySelector('.targetsMissed').innerText = targetsMissed;
+    document.querySelector('.accuracy').innerText = accuracy;
+    document.querySelector('.hoiyahs').innerText = hoiyahs;
+    score = 0;
+    multiplier = 0;
+    combo = 0;
+    time = 60;
+    shotsTaken = 0;
+    targetsKilled = 0;
+    targetsMissed = 0;
+    hoiyahs = 0;
+    targetB = 0;
+    victoryFlag = 0;
+    rows = 3;
+    columns = 3;
+    timerStarted = false;
 }
 
 function checkMultiplier(multiplier) {
@@ -128,25 +168,25 @@ function checkMultiplier(multiplier) {
         targets.style.fontSize = '5em';
     }
 
-    if (multiplier >= 15) {
+    if (multiplier >= 10) {
         rows = 4;
         columns = 4;
         targets.style.fontSize = '4em';
     }
-    
-    if (multiplier >= 50) {
+
+    if (multiplier >= 20) {
         rows = 5;
         columns = 5;
         targets.style.fontSize = '3em';
     }
 
-    if (multiplier >= 75) {
+    if (multiplier >= 40) {
         rows = 6;
         columns = 6;
         targets.style.fontSize = '2em';
     }
 
-    if (multiplier >= 100) {
+    if (multiplier >= 60) {
         rows = 7;
         columns = 7;
         targets.style.fontSize = '1em';
@@ -165,6 +205,8 @@ function createListeners() {
                     runAnimation();
                     multiplier++;
                     combo++;
+                    targetsKilled++;
+                    shotsTaken++;
                     scoreMultiplier.innerHTML = multiplier;
                     score = (1 * multiplier) + score;
                     queryScore.innerHTML = score;
@@ -181,6 +223,8 @@ function createListeners() {
                     missAudio.play();
                     multiplier = 0;
                     combo = 0;
+                    shotsTaken++;
+                    targetsMissed++;
                     scoreMultiplier.innerHTML = multiplier;
                     score -= 100;
                     queryScore.innerHTML = score;
@@ -215,6 +259,7 @@ function checkRows(arr) {
             rowWinner(i);
             winAudio.play();
             victoryFlag = 0;
+            hoiyahs++;
         }
     });
 }
@@ -226,8 +271,8 @@ function checkCols(arr) {
     for (let j = 0; j < numCols; j++) {
         let colMatch = true;
 
-        for (let i = 0; i < numRows-1; i++) {
-            if (arr[i][j] !== arr[i+1][j]) {
+        for (let i = 0; i < numRows - 1; i++) {
+            if (arr[i][j] !== arr[i + 1][j]) {
                 colMatch = false;
                 break;
             }
@@ -237,6 +282,7 @@ function checkCols(arr) {
             colWinner(j);
             winAudio.play();
             victoryFlag = 0;
+            hoiyahs++;
         }
     }
 }
@@ -265,7 +311,7 @@ function colWinner(col) {
         const singleCol = document.querySelector(`.${rc}`);
         singleCol.style.animation = 'blinking 1s infinite';
     }
-    
+
     if (columns <= 3) {
         score += 1000;
     } else if (columns >= 4) {
@@ -280,6 +326,8 @@ function colWinner(col) {
 const showPopup = document.querySelector('.showPopup');
 const popUpContainer = document.querySelector('.popUpContainer');
 const closeButton = document.querySelector('.closeButton');
+const endGameContainer = document.querySelector('.endGameContainer');
+const closeEndGame = document.querySelector('.closeEndGame');
 
 showPopup.onclick = () => {
     popUpContainer.classList.add('active');
@@ -287,4 +335,8 @@ showPopup.onclick = () => {
 
 closeButton.onclick = () => {
     popUpContainer.classList.remove('active');
+}
+
+closeEndGame.onclick = () => {
+    endGameContainer.classList.remove('active');
 }
