@@ -19,6 +19,10 @@ let rows = 3;
 let columns = 3;
 const targetArray = [];
 
+if (!localStorage.getItem('totalPlays')) {
+    localStorage.setItem('totalPlays', 0);
+}
+
 // event listener for play button
 document.querySelector('#play').addEventListener('click', playGame);
 
@@ -114,7 +118,6 @@ const targetBounty = document.querySelector('#targetBounty');
 const queryScore = document.querySelector('#score');
 const scoreMultiplier = document.querySelector('#scoreMultiplier');
 const bonusWin = document.querySelector('#bonusWin');
-const winStyle = "10px solid green";
 
 // initializes the game when the play button is pressed in the browser
 function playGame() {
@@ -158,6 +161,10 @@ function endGame() {
     rows = 3;
     columns = 3;
     timerStarted = false;
+    addTotalPlays = Number(localStorage.getItem('totalPlays'));
+    addTotalPlays = addTotalPlays+1;
+    localStorage.setItem('totalPlays', addTotalPlays);
+    document.querySelector('.totalPlays').innerHTML = localStorage.getItem('totalPlays');
 }
 
 function checkMultiplier(multiplier) {
